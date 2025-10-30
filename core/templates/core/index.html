@@ -1,0 +1,2588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIPC - Nigerian Investment Promotion Commission</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --nipc-green: #00A651;
+            --nipc-red: #E84545;
+            --nipc-navy: #0C1E2E;
+            --nipc-text-dark: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #ffffff;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-placeholder {
+            width: 180px;
+            height: 60px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ccc;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--nipc-text-dark);
+            font-weight: 500;
+            font-size: 12px;
+            padding: 0.5rem 1rem !important;
+            letter-spacing: 0.3px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--nipc-green);
+        }
+
+        .btn-report {
+            background-color: var(--nipc-red);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 4px;
+            margin-right: 0.75rem;
+            white-space: nowrap;
+        }
+
+        .btn-contact {
+            background-color: var(--nipc-green);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.8rem;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .search-icon {
+            width: 20px;
+            height: 20px;
+            margin: 0 1rem;
+            cursor: pointer;
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 12px;
+            color: var(--nipc-text-dark);
+            cursor: pointer;
+            padding-left: 1rem;
+            border-left: 1px solid #e0e0e0;
+        }
+
+        .language-selector::after {
+            content: '▼';
+            margin-left: 0.4rem;
+            font-size: 10px;
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-toggler-icon {
+            width: 28px;
+            height: 2px;
+            background-color: var(--nipc-text-dark);
+            display: block;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler-icon::before,
+        .navbar-toggler-icon::after {
+            content: '';
+            position: absolute;
+            width: 28px;
+            height: 2px;
+            background-color: var(--nipc-text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler-icon::before {
+            top: -8px;
+        }
+
+        .navbar-toggler-icon::after {
+            bottom: -8px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background-color: var(--nipc-navy);
+            background-image: url('/Users/user/Downloads/image\ 11.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(12, 30, 46, 0.85) 0%, rgba(12, 30, 46, 0.6) 50%, rgba(12, 30, 46, 0.75) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            color: white;
+            font-weight: 800;
+            font-size: 4.5rem;
+            line-height: 1.15;
+            margin-bottom: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-text h1 .line-1,
+        .hero-text h1 .line-2,
+        .hero-text h1 .line-3 {
+            display: block;
+        }
+
+        /* Green Card */
+        .green-card {
+            background-color: var(--nipc-green);
+            border-radius: 8px;
+            padding: 3.5rem 3rem 3.5rem 3rem;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .pagination-dots {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid white;
+            background-color: transparent;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: white;
+        }
+
+        .carousel-content {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+
+        .carousel-content.fade-out {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .carousel-content.fade-in {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .green-card h2 {
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 2rem;
+            min-height: 180px;
+        }
+
+        .btn-learn-more {
+            border: 2px solid white;
+            background-color: transparent;
+            color: white;
+            padding: 0.75rem 2.5rem;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .btn-learn-more:hover {
+            background-color: white;
+            color: var(--nipc-green);
+            text-decoration: none;
+        }
+
+        .btn-learn-more::after {
+            content: '→';
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .document-icon {
+            position: absolute;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            width: 70px;
+            height: 70px;
+            background-color: white;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 15px;
+        }
+
+        .document-icon::before,
+        .document-icon::after {
+            content: '';
+            width: 40px;
+            height: 5px;
+            background-color: var(--nipc-green);
+            border-radius: 2px;
+        }
+
+        .document-icon::after {
+            width: 30px;
+        }
+
+
+        /* Sectors Section */
+        .sectors-section {
+            background-color: #ffffff;
+            padding: 5rem 0;
+        }
+
+        .sectors-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--nipc-text-dark);
+            margin-bottom: 0;
+        }
+
+        .carousel-arrows {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .arrow-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #333;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #333;
+        }
+
+        .arrow-btn:hover:not(:disabled) {
+            background-color: var(--nipc-green);
+            border-color: var(--nipc-green);
+            color: white;
+        }
+
+        .arrow-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Sector Cards */
+        .sectors-carousel {
+            min-height: 500px;
+        }
+
+        .sector-card {
+            position: relative;
+            background-color: var(--nipc-green);
+            border-radius: 0;
+            overflow: visible;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-image {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #666;
+            border: 2px dashed #ccc;
+        }
+
+        .card-content {
+            padding: 2.5rem 2rem 4rem 2rem;
+            position: relative;
+            z-index: 2;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            color: white;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            color: white;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Curved Corner Effect */
+        .curved-corner {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background-color: white;
+            border-radius: 150px 0 0 0;
+            z-index: 1;
+        }
+
+        /* Pagination Dots */
+        .sectors-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 0;
+        }
+
+        .sector-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid #333;
+            background-color: transparent;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .sector-dot.active {
+            background-color: #333;
+        }
+
+        /* All Business Opportunities Button */
+        .btn-opportunities {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            border: 2px solid #333;
+            background-color: transparent;
+            color: #333;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-opportunities:hover {
+            background-color: #333;
+            color: white;
+        }
+
+        .btn-opportunities svg {
+            margin-left: 0.5rem;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 991.98px) {
+            .sectors-section {
+                padding: 3rem 0;
+            }
+
+            .sectors-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .sectors-carousel {
+                min-height: auto;
+            }
+
+            .sector-card {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .card-content {
+                padding: 2rem 1.5rem 3rem 1.5rem;
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+            }
+
+            .card-description {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .sectors-title {
+                font-size: 1.75rem;
+            }
+
+            .card-image {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .sectors-section {
+                padding: 2.5rem 0;
+            }
+
+            .sectors-title {
+                font-size: 1.5rem;
+            }
+
+            .card-image {
+                height: 180px;
+            }
+
+            .card-content {
+                padding: 1.5rem 1.25rem 2.5rem 1.25rem;
+            }
+
+            .card-title {
+                font-size: 1.35rem;
+            }
+        }
+
+
+        /* Investors Section */
+        .investors-section {
+            background-color: #F8F8F8;
+            padding: 5rem 0;
+        }
+
+        .investors-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--nipc-text-dark);
+            margin-bottom: 0;
+        }
+
+        .investor-card {
+            background-color: white;
+            border: 1px solid #E5E5E5;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .investor-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .investor-logo {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            border-bottom: 1px solid #E5E5E5;
+        }
+
+        .investor-logo .logo-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #999;
+            border: 2px dashed #ddd;
+        }
+
+        .investor-info {
+            padding: 1.75rem 1.75rem 2rem 1.75rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-item {
+            margin-bottom: 1.25rem;
+        }
+
+        .info-item:last-of-type {
+            flex-grow: 1;
+        }
+
+        .info-item label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #333;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .info-item p {
+            font-size: 0.9rem;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #DEDEDE;
+            margin: 1.25rem 0;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #333;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--nipc-green);
+        }
+
+        .read-more svg {
+            margin-left: 0.5rem;
+        }
+
+        .btn-success-stories {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            border: 2px solid #333;
+            background-color: transparent;
+            color: #333;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-success-stories:hover {
+            background-color: #333;
+            color: white;
+        }
+
+        .btn-success-stories svg {
+            margin-left: 0.5rem;
+        }
+
+        /* Mobile Investors Carousel */
+        .investors-carousel-mobile {
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: visible;
+            padding: 0 1rem;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .investors-carousel-mobile .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 1rem;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .investors-carousel-mobile .carousel-slide {
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+
+        .investors-carousel-mobile .carousel-slide .investor-card {
+            height: auto;
+            min-height: 100%;
+            -webkit-user-select: text;
+            user-select: text;
+        }
+
+        .investors-pagination-mobile {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 0;
+        }
+
+        .investor-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid #333;
+            background-color: transparent;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .investor-dot.active {
+            background-color: #333;
+        }
+
+        /* Mobile adjustments for investors */
+        @media (max-width: 991.98px) {
+            .investors-section {
+                padding: 3rem 0;
+            }
+
+            .investors-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .investor-card {
+                height: auto;
+            }
+
+            .investor-logo {
+                height: 160px;
+            }
+
+            .investors-carousel-mobile .carousel-slide {
+                min-width: 100%;
+            }
+
+            .investors-carousel-mobile .carousel-track {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .investors-title {
+                font-size: 1.75rem;
+            }
+
+            .investor-logo {
+                height: 150px;
+            }
+
+            .investors-carousel-mobile .carousel-slide {
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .investors-section {
+                padding: 2.5rem 0;
+            }
+
+            .investors-title {
+                font-size: 1.5rem;
+            }
+
+            .investor-logo {
+                height: 130px;
+                padding: 1.5rem;
+            }
+
+            .investor-info {
+                padding: 1.5rem 1.25rem;
+            }
+
+            .investors-carousel-mobile {
+                padding: 0 0.5rem;
+            }
+
+            .investors-carousel-mobile .carousel-slide {
+                min-width: 100%;
+            }
+
+            .investors-carousel-mobile .carousel-track {
+                gap: 1rem;
+            }
+
+            .info-item label {
+                font-size: 0.65rem;
+            }
+
+            .info-item p {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* One Stop Investment Centre Section */
+        .one-stop-section {
+            background-color: var(--nipc-green);
+            padding: 6rem 0;
+        }
+
+        .one-stop-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .one-stop-icon .icon-placeholder {
+            width: 400px;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 3px dashed rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+
+        .one-stop-content {
+            color: white;
+        }
+
+        .one-stop-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .one-stop-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .btn-learn-more-white {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            border: 2px solid white;
+            background-color: transparent;
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-learn-more-white:hover {
+            background-color: white;
+            color: var(--nipc-green);
+        }
+
+        .btn-learn-more-white svg {
+            margin-left: 0.5rem;
+        }
+
+        /* Mobile adjustments for One Stop section */
+        @media (max-width: 991.98px) {
+            .one-stop-section {
+                padding: 4rem 0;
+            }
+
+            .one-stop-icon .icon-placeholder {
+                width: 250px;
+                height: 200px;
+                margin: 0 auto 2rem;
+            }
+
+            .one-stop-content {
+                text-align: center;
+            }
+
+            .one-stop-description {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .one-stop-section {
+                padding: 3.5rem 0;
+            }
+
+            .one-stop-icon .icon-placeholder {
+                width: 220px;
+                height: 180px;
+            }
+
+            .one-stop-description {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .one-stop-section {
+                padding: 3rem 0;
+            }
+
+            .one-stop-icon .icon-placeholder {
+                width: 200px;
+                height: 160px;
+            }
+
+            .one-stop-description {
+                font-size: 0.85rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .btn-learn-more-white {
+                padding: 0.9rem 2rem;
+                font-size: 12px;
+            }
+        }
+
+        /* News Section */
+        .news-section {
+            background-color: #FAFAFA;
+            padding: 5rem 0;
+        }
+
+        .news-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--nipc-text-dark);
+            margin-bottom: 0;
+        }
+
+        .news-card {
+            background-color: white;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.3s ease;
+            overflow: visible;
+        }
+
+        .news-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Vertical dividers between cards on desktop */
+        @media (min-width: 768px) {
+            .news-section .row>div:not(:last-child) {
+                border-right: 1px solid #E5E5E5;
+                padding-right: 1.5rem;
+            }
+
+            .news-section .row>div:not(:first-child) {
+                padding-left: 1.5rem;
+            }
+        }
+
+        .news-image {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: visible;
+        }
+
+        .news-image .image-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: #e5e5e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #999;
+            border: 2px dashed #ccc;
+        }
+
+        .image-curve {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            border-radius: 100px 0 0 0;
+            z-index: 1;
+        }
+
+        .news-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-category {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: capitalize;
+            color: #666;
+            margin-bottom: 0.75rem;
+        }
+
+        .news-title-text {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--nipc-text-dark);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .news-date {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-read-more {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 2rem;
+            border: 2px solid var(--nipc-green);
+            background-color: transparent;
+            color: var(--nipc-green);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            margin-top: auto;
+            align-self: flex-start;
+        }
+
+        .btn-read-more:hover {
+            background-color: var(--nipc-green);
+            color: white;
+        }
+
+        .btn-read-more svg {
+            margin-left: 0.5rem;
+        }
+
+        .btn-view-all {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--nipc-green);
+            background-color: transparent;
+            color: var(--nipc-green);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view-all:hover {
+            background-color: var(--nipc-green);
+            color: white;
+        }
+
+        .btn-view-all svg {
+            margin-left: 0.5rem;
+        }
+
+        /* News Mobile Carousel */
+        .news-carousel-mobile {
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: visible;
+            padding: 0;
+            -webkit-user-select: none;
+            user-select: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .news-carousel-mobile .news-carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 1rem;
+            -webkit-user-select: none;
+            user-select: none;
+            padding: 0 1rem;
+        }
+
+        .news-carousel-mobile .news-carousel-slide {
+            min-width: calc(100% - 2rem);
+            max-width: calc(100% - 2rem);
+            flex-shrink: 0;
+        }
+
+        .news-carousel-mobile .news-carousel-slide .news-card {
+            height: auto;
+            -webkit-user-select: text;
+            user-select: text;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* Mobile news card structure - text first, image second */
+        .news-card-mobile {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .news-content-mobile {
+            padding: 1.5rem 1.5rem 1rem 1.5rem;
+            order: 1;
+            background-color: white;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .news-content-mobile .news-category {
+            margin-bottom: 1rem;
+        }
+
+        .news-content-mobile .news-title-text {
+            margin-bottom: 1rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .news-content-mobile .news-date {
+            margin-bottom: 0;
+        }
+
+        .news-image-mobile {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: visible;
+            order: 2;
+        }
+
+        .news-image-mobile .image-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: #e5e5e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #999;
+            border: 2px dashed #ccc;
+            overflow: hidden;
+        }
+
+        .news-image-mobile .image-curve {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            border-radius: 80px 0 0 0;
+            z-index: 1;
+        }
+
+        .news-button-mobile {
+            padding: 1.5rem;
+            order: 3;
+        }
+
+        .news-button-mobile .btn-read-more {
+            margin-top: 0;
+        }
+
+        .news-pagination-mobile {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 0;
+        }
+
+        .news-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid #333;
+            background-color: transparent;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .news-dot.active {
+            background-color: #333;
+        }
+
+        /* Mobile adjustments for news */
+        @media (max-width: 991.98px) {
+            .news-section {
+                padding: 3rem 0;
+            }
+
+            .news-title {
+                font-size: 2.5rem;
+            }
+
+            .news-image {
+                height: 220px;
+            }
+
+            .news-content {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .news-title {
+                font-size: 2rem;
+            }
+
+            .news-image {
+                height: 200px;
+            }
+
+            .image-curve {
+                width: 80px;
+                height: 80px;
+                border-radius: 80px 0 0 0;
+            }
+
+            .news-image-mobile {
+                height: 200px;
+            }
+
+            .news-image-mobile .image-curve {
+                width: 70px;
+                height: 70px;
+                border-radius: 70px 0 0 0;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .news-section {
+                padding: 2.5rem 0;
+            }
+
+            .news-title {
+                font-size: 1.75rem;
+            }
+
+            .news-image {
+                height: 180px;
+            }
+
+            .news-content {
+                padding: 1.25rem;
+            }
+
+            .news-title-text {
+                font-size: 1.05rem;
+            }
+
+            .btn-read-more {
+                padding: 0.65rem 1.5rem;
+                font-size: 0.75rem;
+            }
+
+            .news-image-mobile {
+                height: 180px;
+            }
+
+            .news-content-mobile {
+                padding: 1.25rem 1.25rem 1rem 1.25rem;
+            }
+
+            .news-content-mobile .news-title-text {
+                font-size: 1.05rem;
+            }
+
+            .news-button-mobile {
+                padding: 1.25rem;
+            }
+        }
+
+        /* Footer Section */
+        .footer-section {
+            background-color: #E8E8E8;
+            padding: 4rem 0 2.5rem 0;
+        }
+
+        .footer-top {
+            padding-bottom: 2.5rem;
+        }
+
+        .footer-logo .logo-placeholder {
+            width: 150px;
+            height: 60px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ccc;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .footer-description {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 0;
+        }
+
+        .btn-footer-learn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 2rem;
+            border: 2px solid var(--nipc-green);
+            background-color: transparent;
+            color: var(--nipc-green);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-footer-learn:hover {
+            background-color: var(--nipc-green);
+            color: white;
+        }
+
+        .footer-divider {
+            height: 1px;
+            background-color: #CCCCCC;
+            margin: 0 0 2.5rem 0;
+        }
+
+        .footer-middle {
+            padding-bottom: 2.5rem;
+        }
+
+        .footer-vertical-divider {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background-color: #CCCCCC;
+        }
+
+        .footer-title {
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .footer-subtitle {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Newsletter Form */
+        .newsletter-form {
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-form .input-group {
+            display: flex;
+            gap: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 0.9rem 1.25rem;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            background-color: white;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            pointer-events: auto;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--nipc-green);
+            box-shadow: none;
+        }
+
+        .btn-subscribe {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.9rem 2rem;
+            background-color: var(--nipc-green);
+            color: white;
+            border: 1px solid var(--nipc-green);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border-radius: 0 4px 4px 0;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-subscribe:hover {
+            background-color: #008a44;
+            border-color: #008a44;
+        }
+
+        .privacy-text {
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        .privacy-link {
+            color: #333;
+            text-decoration: underline;
+        }
+
+        .privacy-link:hover {
+            color: var(--nipc-green);
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #2B6B45;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 20px;
+        }
+
+        .social-icon:hover {
+            background-color: var(--nipc-green);
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        .social-icon i {
+            color: white;
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            padding-top: 2rem;
+        }
+
+        .copyright-text {
+            font-size: 0.85rem;
+            color: #333;
+            margin-bottom: 0;
+        }
+
+        .privacy-notice {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #333;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .privacy-notice:hover {
+            color: var(--nipc-green);
+        }
+
+        /* Mobile Footer Styles */
+        @media (max-width: 991.98px) {
+            .footer-section {
+                padding: 3rem 0 2rem 0;
+            }
+
+            .footer-top {
+                padding-bottom: 2rem;
+            }
+
+            .footer-logo {
+                text-align: center;
+            }
+
+            .footer-logo .logo-placeholder {
+                margin: 0 auto;
+            }
+
+            .footer-description {
+                text-align: left;
+                font-size: 0.9rem;
+            }
+
+            .btn-footer-learn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .footer-divider {
+                margin: 2rem 0;
+            }
+
+            .footer-middle {
+                padding-bottom: 2rem;
+            }
+
+            .footer-title {
+                font-size: 1.6rem;
+                text-align: center;
+            }
+
+            .footer-subtitle {
+                text-align: left;
+                font-size: 0.9rem;
+            }
+
+            .newsletter-form .input-group {
+                flex-direction: column;
+                gap: 1rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            .newsletter-input {
+                width: 100%;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                flex: none;
+                pointer-events: auto;
+                touch-action: manipulation;
+                -webkit-user-select: text;
+                user-select: text;
+                position: relative;
+                z-index: 1;
+                font-size: 16px;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .btn-subscribe {
+                width: 100%;
+                border-radius: 4px;
+                border: 1px solid var(--nipc-green);
+                padding: 0.9rem 1.5rem;
+            }
+
+            .privacy-text {
+                text-align: left;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                padding-top: 1.5rem;
+            }
+
+            .copyright-text {
+                text-align: center;
+                font-size: 0.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .privacy-notice {
+                display: block;
+                text-align: center;
+                font-size: 0.8rem;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .footer-section {
+                padding: 2.5rem 0 1.5rem 0;
+            }
+
+            .footer-title {
+                font-size: 1.4rem;
+            }
+
+            .footer-subtitle {
+                font-size: 0.85rem;
+            }
+
+            .footer-description {
+                font-size: 0.85rem;
+            }
+
+            .social-icon {
+                width: 44px;
+                height: 44px;
+            }
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 991.98px) {
+            .hero-text h1 {
+                font-size: 2.75rem;
+            }
+
+            .green-card {
+                padding: 2.5rem 2rem;
+                margin-top: 2rem;
+            }
+
+            .green-card h2 {
+                font-size: 1.5rem;
+            }
+
+            .document-icon {
+                display: none;
+            }
+
+            .navbar-nav {
+                padding: 1rem 0;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.75rem 0 !important;
+            }
+
+            .nav-actions {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid #e0e0e0;
+            }
+
+            .btn-report,
+            .btn-contact {
+                width: 100%;
+                margin: 0;
+            }
+
+            .search-icon,
+            .language-selector {
+                margin-top: 1rem;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .hero-text h1 {
+                font-size: 2.25rem;
+            }
+
+            .green-card h2 {
+                font-size: 1.35rem;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .hero-text h1 {
+                font-size: 1.85rem;
+            }
+
+            .green-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .green-card h2 {
+                font-size: 1.2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .pagination-dots {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light" x-data="{ mobileMenuOpen: false }">
+        <div class="container-fluid px-lg-5">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <div class="logo-placeholder">
+                    <img src="/Users/user/Downloads/image 1.png" alt="Book with Chart" class="img-fluid"
+                        style="max-width: 250px;">
+                    <!-- Logo Here -->
+                </div>
+            </a>
+
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler" type="button" @click="mobileMenuOpen = !mobileMenuOpen">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse" :class="{ 'show': mobileMenuOpen }" id="navbarContent">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">NIGERIA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">WHY NIGERIA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">BUSINESS OPPORTUNITIES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">INSIGHTS FOR INVESTORS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">ABOUT US</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">MEDIA CENTRE</a>
+                    </li>
+                </ul>
+
+                <!-- Action Buttons -->
+                <div class="nav-actions d-flex align-items-center ms-lg-3">
+                    <button class="btn btn-report">reportgov.ng</button>
+                    <button class="btn btn-contact">CONTACT US</button>
+
+                    <!-- Search Icon -->
+                    <svg class="search-icon d-none d-lg-block" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+
+                    <!-- Language Selector -->
+                    <div class="language-selector d-none d-lg-flex">
+                        EN
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container-fluid px-lg-5">
+            <div class="hero-content">
+                <div class="row align-items-center">
+                    <!-- Hero Text - Left Side on Desktop -->
+                    <div class="col-lg-7 col-xl-6">
+                        <div class="hero-text">
+                            <h1>
+                                <span class="line-1">Nigeria.</span>
+                                <span class="line-2">Your Investment Goals.</span>
+                                <span class="line-3">Achieved.</span>
+                            </h1>
+                        </div>
+                    </div>
+
+                    <!-- Green Card Carousel - Right Side on Desktop -->
+                    <div class="col-lg-5 col-xl-4 offset-xl-1" x-data="{
+                             currentSlide: 0,
+                             slides: [
+                                 {
+                                     title: 'Download our<br>Deals Book<br>Private and Public Sector<br>Investment Signal in Nigeria<br>Q2 2025',
+                                     buttonText: 'LEARN MORE',
+                                     link: '#'
+                                 },
+                                 {
+                                     title: 'Explore Investment<br>Opportunities<br>Across Multiple Sectors<br>in Nigeria<br>2025',
+                                     buttonText: 'LEARN MORE',
+                                     link: '#'
+                                 },
+                                 {
+                                     title: 'Access Our<br>Investment Guide<br>Comprehensive Analysis<br>and Market Insights<br>Q2 2025',
+                                     buttonText: 'LEARN MORE',
+                                     link: '#'
+                                 },
+                                 {
+                                     title: 'Partner With Us<br>For Success<br>Strategic Investment<br>Opportunities in Nigeria<br>2025',
+                                     buttonText: 'LEARN MORE',
+                                     link: '#'
+                                 }
+                             ],
+                             autoplay: null,
+                             init() {
+                                 this.startAutoplay();
+                             },
+                             goToSlide(index) {
+                                 this.currentSlide = index;
+                                 this.resetAutoplay();
+                             },
+                             nextSlide() {
+                                 this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+                             },
+                             startAutoplay() {
+                                 this.autoplay = setInterval(() => {
+                                     this.nextSlide();
+                                 }, 5000);
+                             },
+                             resetAutoplay() {
+                                 clearInterval(this.autoplay);
+                                 this.startAutoplay();
+                             }
+                         }">
+                        <div class="green-card">
+                            <!-- Pagination Dots -->
+                            <div class="pagination-dots">
+                                <template x-for="(slide, index) in slides" :key="index">
+                                    <div class="dot" :class="{ 'active': currentSlide === index }"
+                                        @click="goToSlide(index)"></div>
+                                </template>
+                            </div>
+
+                            <!-- Carousel Content -->
+                            <div class="carousel-content" x-show="true" x-transition:enter="fade-in"
+                                x-transition:leave="fade-out">
+                                <h2 x-html="slides[currentSlide].title"></h2>
+
+                                <!-- Learn More Button -->
+                                <a :href="slides[currentSlide].link" class="btn-learn-more text-decoration-none">
+                                    <span x-text="slides[currentSlide].buttonText"></span>
+                                </a>
+                            </div>
+
+                            <!-- Document Icon - Desktop Only -->
+                            <div class="document-icon d-none d-lg-flex"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sectors Section -->
+    <section class="sectors-section py-5" x-data="{
+                 currentIndex: 0,
+                 cardsToShow: window.innerWidth >= 992 ? 3 : 1,
+                 sectors: [
+                     {
+                         title: 'Industry',
+                         description: 'A top choice for advanced manufacturing operations',
+                         image: 'industry.jpg',
+                         icon: 'industry-icon'
+                     },
+                     {
+                         title: 'Agriculture',
+                         description: 'An innovative leader in sustainable biomanufacturing and circular economy solutions',
+                         image: 'agriculture.jpg',
+                         icon: 'agriculture-icon'
+                     },
+                     {
+                         title: 'Business Services',
+                         description: 'A growth hotspot for personalized medicine and biomanufacturing',
+                         image: 'business-services.jpg',
+                         icon: 'business-icon'
+                     },
+                     {
+                         title: 'Technology',
+                         description: 'Leading innovation in digital transformation and tech solutions',
+                         image: 'technology.jpg',
+                         icon: 'tech-icon'
+                     },
+                     {
+                         title: 'Energy',
+                         description: 'Powering the future with renewable and sustainable energy',
+                         image: 'energy.jpg',
+                         icon: 'energy-icon'
+                     },
+                     {
+                         title: 'Infrastructure',
+                         description: 'Building the foundation for economic growth',
+                         image: 'infrastructure.jpg',
+                         icon: 'infrastructure-icon'
+                     },
+                     {
+                         title: 'Healthcare',
+                         description: 'Advancing medical excellence and healthcare delivery',
+                         image: 'healthcare.jpg',
+                         icon: 'healthcare-icon'
+                     },
+                     {
+                         title: 'Education',
+                         description: 'Developing human capital for tomorrow',
+                         image: 'education.jpg',
+                         icon: 'education-icon'
+                     },
+                     {
+                         title: 'Tourism',
+                         description: 'Showcasing Nigeria\'s rich culture and natural beauty',
+                         image: 'tourism.jpg',
+                         icon: 'tourism-icon'
+                     },
+                     {
+                         title: 'Mining',
+                         description: 'Unlocking mineral wealth and resources',
+                         image: 'mining.jpg',
+                         icon: 'mining-icon'
+                     },
+                     {
+                         title: 'Real Estate',
+                         description: 'Creating spaces for living and business growth',
+                         image: 'real-estate.jpg',
+                         icon: 'real-estate-icon'
+                     },
+                     {
+                         title: 'Financial Services',
+                         description: 'Enabling investment and financial inclusion',
+                         image: 'financial.jpg',
+                         icon: 'financial-icon'
+                     }
+                 ],
+                 init() {
+                     window.addEventListener('resize', () => {
+                         this.cardsToShow = window.innerWidth >= 992 ? 3 : 1;
+                     });
+                 },
+                 get totalSlides() {
+                     return Math.ceil(this.sectors.length / this.cardsToShow);
+                 },
+                 get visibleSectors() {
+                     const start = this.currentIndex * this.cardsToShow;
+                     return this.sectors.slice(start, start + this.cardsToShow);
+                 },
+                 nextSlide() {
+                     if (this.currentIndex < this.totalSlides - 1) {
+                         this.currentIndex++;
+                     }
+                 },
+                 prevSlide() {
+                     if (this.currentIndex > 0) {
+                         this.currentIndex--;
+                     }
+                 },
+                 goToSlide(index) {
+                     this.currentIndex = index;
+                 }
+             }">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-10 offset-lg-1">
+                    <!-- Section Header -->
+                    <div class="row mb-5">
+                        <div class="col-lg-6">
+                            <h2 class="sectors-title">
+                                Our sectors.<br>
+                                Your opportunities.
+                            </h2>
+                        </div>
+                        <div class="col-lg-6 d-none d-lg-flex justify-content-end align-items-start">
+                            <!-- Navigation Arrows - Desktop Only -->
+                            <div class="carousel-arrows">
+                                <button class="arrow-btn" @click="prevSlide()" :disabled="currentIndex === 0">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="15 18 9 12 15 6"></polyline>
+                                    </svg>
+                                </button>
+                                <button class="arrow-btn ms-3" @click="nextSlide()"
+                                    :disabled="currentIndex === totalSlides - 1">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cards Carousel -->
+                    <div class="row sectors-carousel mb-5">
+                        <template x-for="sector in visibleSectors" :key="sector.title">
+                            <div class="col-12 col-lg-4 mb-4 mb-lg-0">
+                                <div class="sector-card">
+                                    <!-- Card Image/Icon Area -->
+                                    <div class="card-image">
+                                        <div class="image-placeholder">
+                                            <span x-text="sector.title + ' Image'"></span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Card Content Area -->
+                                    <div class="card-content">
+                                        <h3 class="card-title" x-text="sector.title"></h3>
+                                        <p class="card-description" x-text="sector.description"></p>
+                                    </div>
+
+                                    <!-- Curved Corner Element -->
+                                    <div class="curved-corner"></div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Pagination Dots -->
+                    <div class="sectors-pagination mb-4">
+                        <template x-for="(sector, index) in sectors" :key="index">
+                            <div class="sector-dot"
+                                :class="{ 'active': Math.floor(index / cardsToShow) === currentIndex }"
+                                @click="goToSlide(Math.floor(index / cardsToShow))"></div>
+                        </template>
+                    </div>
+
+                    <!-- All Business Opportunities Button -->
+                    <div class="text-center">
+                        <a href="#" class="btn-opportunities">
+                            ALL BUSINESS OPPORTUNITIES
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" class="ms-2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investors Section -->
+    <section class="investors-section py-5" x-data="{
+                 currentInvestorIndex: 0,
+                 touchStartX: 0,
+                 touchEndX: 0,
+                 investors: [
+                     {
+                         name: 'Dangote Cement',
+                         fte: '11,983 (2022)',
+                         est: '1992, Lagos',
+                         functions: 'Development, production and distribution of cement for infrastructure and construction markets.',
+                         logo: 'dangote-logo.png'
+                     },
+                     {
+                         name: 'Nigerian Breweries',
+                         fte: '481 (December, 2024)',
+                         est: '1946, Lagos',
+                         functions: 'Brewing, Packaging, Distribution, Sales & Marketing, and Customer Engagement Support.',
+                         logo: 'nb-logo.png'
+                     },
+                     {
+                         name: 'MTN',
+                         fte: '770 (May, 2023)',
+                         est: '2001',
+                         functions: 'Leading connectivity and digital solutions provider across Nigeria.',
+                         logo: 'mtn-logo.png'
+                     },
+                     {
+                         name: 'Nestlé',
+                         fte: '130+',
+                         est: '1961, Lagos',
+                         functions: 'Manufacturing and supplying trusted nutrition and wellness products.',
+                         logo: 'nestle-logo.png'
+                     }
+                 ],
+                 get slideWidth() {
+                     return 100;
+                 },
+                 get gapSize() {
+                     if (window.innerWidth <= 575) return 1;
+                     if (window.innerWidth <= 991) return 1.5;
+                     return 1;
+                 },
+                 get transformValue() {
+                     return `calc(-${this.currentInvestorIndex} * (${this.slideWidth}% + ${this.gapSize}rem))`;
+                 },
+                 goToInvestor(index) {
+                     this.currentInvestorIndex = index;
+                 },
+                 handleTouchStart(e) {
+                     this.touchStartX = e.touches[0].clientX;
+                 },
+                 handleTouchEnd(e) {
+                     this.touchEndX = e.changedTouches[0].clientX;
+                     this.handleSwipe();
+                 },
+                 handleSwipe() {
+                     const swipeThreshold = 50;
+                     const diff = this.touchStartX - this.touchEndX;
+                     
+                     if (Math.abs(diff) > swipeThreshold) {
+                         if (diff > 0 && this.currentInvestorIndex < this.investors.length - 1) {
+                             // Swipe left - next
+                             this.currentInvestorIndex++;
+                         } else if (diff < 0 && this.currentInvestorIndex > 0) {
+                             // Swipe right - previous
+                             this.currentInvestorIndex--;
+                         }
+                     }
+                 }
+             }">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-10 offset-lg-1">
+                    <!-- Section Header -->
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <h2 class="investors-title">
+                                <span class="d-none d-lg-block">Global Corporations<br>Investing in Nigeria</span>
+                                <span class="d-lg-none">Global names that<br>trust us</span>
+                            </h2>
+                        </div>
+                    </div>
+
+                    <!-- Desktop View: Grid of Cards -->
+                    <div class="row mb-5 d-none d-lg-flex">
+                        <template x-for="investor in investors" :key="investor.name">
+                            <div class="col-lg-3 mb-4">
+                                <div class="investor-card">
+                                    <div class="investor-logo">
+                                        <div class="logo-placeholder" x-text="investor.name + ' Logo'"></div>
+                                    </div>
+                                    <div class="investor-info">
+                                        <div class="info-item">
+                                            <label>FTE:</label>
+                                            <p x-text="investor.fte"></p>
+                                        </div>
+                                        <div class="divider"></div>
+                                        <div class="info-item">
+                                            <label>EST:</label>
+                                            <p x-text="investor.est"></p>
+                                        </div>
+                                        <div class="divider"></div>
+                                        <div class="info-item">
+                                            <label>Functions:</label>
+                                            <p x-text="investor.functions"></p>
+                                        </div>
+                                        <a href="#" class="read-more">
+                                            READ MORE
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" class="ms-2">
+                                                <polyline points="9 18 15 12 9 6"></polyline>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Mobile View: Carousel -->
+                    <div class="d-lg-none mb-4">
+                        <div class="investors-carousel-mobile" @touchstart="handleTouchStart($event)"
+                            @touchend="handleTouchEnd($event)">
+                            <div class="carousel-track" :style="`transform: translateX(${transformValue})`">
+                                <template x-for="investor in investors" :key="investor.name">
+                                    <div class="carousel-slide">
+                                        <div class="investor-card">
+                                            <div class="investor-logo">
+                                                <div class="logo-placeholder" x-text="investor.name + ' Logo'"></div>
+                                            </div>
+                                            <div class="investor-info">
+                                                <div class="info-item">
+                                                    <label>FTE:</label>
+                                                    <p x-text="investor.fte"></p>
+                                                </div>
+                                                <div class="divider"></div>
+                                                <div class="info-item">
+                                                    <label>EST:</label>
+                                                    <p x-text="investor.est"></p>
+                                                </div>
+                                                <a href="#" class="read-more">
+                                                    READ MORE
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" class="ms-2">
+                                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Pagination Dots -->
+                        <div class="investors-pagination-mobile mt-4">
+                            <template x-for="(investor, index) in investors" :key="index">
+                                <div class="investor-dot" :class="{ 'active': currentInvestorIndex === index }"
+                                    @click="goToInvestor(index)"></div>
+                            </template>
+                        </div>
+                    </div>
+
+                    <!-- More Success Stories Button -->
+                    <div class="text-center">
+                        <a href="#" class="btn-success-stories">
+                            MORE SUCCESS STORIES
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" class="ms-2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- One Stop Investment Centre Section -->
+    <section class="one-stop-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-4 mb-lg-0 text-center text-lg-start">
+                    <!-- Icon/Illustration -->
+                    <!-- <div class="one-stop-icon">
+                        <div class="icon-placeholder">Icon: Book with Chart</div>
+                    </div> -->
+
+                    <div class="one-stop-icon text-center">
+                        <img src="/Users/user/Downloads/Component 1.png" alt="Book with Chart" class="img-fluid"
+                            style="max-width: 250px;">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <!-- Content -->
+                    <div class="one-stop-content">
+                        <h2 class="one-stop-title d-none d-lg-block">One Stop Investment Centre</h2>
+                        <p class="one-stop-description">
+                            The One Stop Investment Centre, houses 27 Government agencies, and provides investment
+                            facilitation services, reduce time required to process regulatory approvals and permits and
+                            assist with information and requirements from incorporation to expansion.
+                        </p>
+                        <a href="#" class="btn-learn-more-white">
+                            LEARN MORE
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" class="ms-2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news-section py-5" x-data="{
+                 currentNewsIndex: 0,
+                 newsToShow: window.innerWidth >= 768 ? 3 : 1,
+                 newsArticles: [
+                     {
+                         category: 'New investments',
+                         title: 'Nigeria and Colombia agree to deepen economic ties following a high-level meeting at the State House.',
+                         date: 'Oct 14, 2025',
+                         image: 'news1.jpg',
+                         link: '#'
+                     },
+                     {
+                         category: '',
+                         title: 'NIPC explores a solar-powered clean cooking innovation with CSR Solutions Ltd, supported by the Federal Ministry of Environment.',
+                         date: 'Oct 09, 2025',
+                         image: 'news2.jpg',
+                         link: '#'
+                     },
+                     {
+                         category: 'Agriculture',
+                         title: 'NIPC leads a Chinese delegation to accelerate agricultural investment opportunities in Nigeria.',
+                         date: 'Oct 08, 2025',
+                         image: 'news3.jpg',
+                         link: '#'
+                     }
+                 ],
+                 init() {
+                     window.addEventListener('resize', () => {
+                         this.newsToShow = window.innerWidth >= 768 ? 3 : 1;
+                         this.currentNewsIndex = 0;
+                     });
+                 },
+                 get visibleNews() {
+                     if (this.newsToShow === 3) {
+                         return this.newsArticles;
+                     }
+                     return [this.newsArticles[this.currentNewsIndex]];
+                 },
+                 goToNews(index) {
+                     this.currentNewsIndex = index;
+                 },
+                 handleTouchStart(e) {
+                     this.touchStartX = e.touches[0].clientX;
+                 },
+                 handleTouchEnd(e) {
+                     this.touchEndX = e.changedTouches[0].clientX;
+                     this.handleSwipe();
+                 },
+                 handleSwipe() {
+                     const swipeThreshold = 50;
+                     const diff = this.touchStartX - this.touchEndX;
+                     
+                     if (Math.abs(diff) > swipeThreshold) {
+                         if (diff > 0 && this.currentNewsIndex < this.newsArticles.length - 1) {
+                             this.currentNewsIndex++;
+                         } else if (diff < 0 && this.currentNewsIndex > 0) {
+                             this.currentNewsIndex--;
+                         }
+                     }
+                 }
+             }">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-10 offset-lg-1">
+                    <!-- Section Header -->
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <h2 class="news-title">News</h2>
+                        </div>
+                    </div>
+
+                    <!-- Desktop View: Grid of Cards -->
+                    <div class="row mb-5 d-none d-md-flex">
+                        <template x-for="article in newsArticles" :key="article.title">
+                            <div class="col-md-4 mb-4">
+                                <div class="news-card">
+                                    <div class="news-image">
+                                        <div class="image-placeholder" x-text="'News Image'"></div>
+                                        <div class="image-curve"></div>
+                                    </div>
+                                    <div class="news-content">
+                                        <p class="news-category" x-text="article.category" x-show="article.category">
+                                        </p>
+                                        <h3 class="news-title-text" x-text="article.title"></h3>
+                                        <p class="news-date" x-text="article.date"></p>
+                                        <a :href="article.link" class="btn-read-more">
+                                            READ MORE
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" class="ms-2">
+                                                <polyline points="9 18 15 12 9 6"></polyline>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Mobile View: Carousel -->
+                    <div class="d-md-none mb-4">
+                        <div class="news-carousel-mobile" @touchstart="handleTouchStart($event)"
+                            @touchend="handleTouchEnd($event)">
+                            <div class="news-carousel-track"
+                                :style="`transform: translateX(calc(-${currentNewsIndex} * (100% - 1rem)))`">
+                                <template x-for="article in newsArticles" :key="article.title">
+                                    <div class="news-carousel-slide">
+                                        <div class="news-card news-card-mobile">
+                                            <!-- Mobile: Content First -->
+                                            <div class="news-content-mobile">
+                                                <p class="news-category" x-text="article.category"
+                                                    x-show="article.category"></p>
+                                                <h3 class="news-title-text" x-text="article.title"></h3>
+                                                <p class="news-date" x-text="article.date"></p>
+                                            </div>
+                                            <!-- Mobile: Image Second -->
+                                            <div class="news-image-mobile">
+                                                <div class="image-placeholder" x-text="'News Image'"></div>
+                                                <div class="image-curve"></div>
+                                            </div>
+                                            <!-- Mobile: Button Last -->
+                                            <div class="news-button-mobile">
+                                                <a :href="article.link" class="btn-read-more">
+                                                    READ MORE
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" class="ms-2">
+                                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Pagination Dots -->
+                        <div class="news-pagination-mobile mt-4">
+                            <template x-for="(article, index) in newsArticles" :key="index">
+                                <div class="news-dot" :class="{ 'active': currentNewsIndex === index }"
+                                    @click="goToNews(index)"></div>
+                            </template>
+                        </div>
+                    </div>
+
+                    <!-- View All Button -->
+                    <div class="text-center">
+                        <a href="#" class="btn-view-all">
+                            VIEW ALL
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" class="ms-2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="one-stop-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-4 mb-lg-0 text-center text-lg-start">
+                    <!-- Icon/Illustration -->
+                    <!-- <div class="one-stop-icon">
+                        <div class="icon-placeholder">Icon: Book with Chart</div>
+                    </div> -->
+
+                    <div class="one-stop-icon text-center">
+                        <img src="/Users/user/Downloads/Contact Us.png" alt="Book with Chart" class="img-fluid"
+                            style="max-width: 250px;">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <!-- Content -->
+                    <div class="one-stop-content">
+                        <h2 class="one-stop-title d-none d-lg-block">Want to know more?</h2>
+                        <p class="one-stop-description">
+                            Thinking of doing business in Nigeria? We're here to help. We offer complimentary advisory
+                            support, connect you to industry experts, and simplify every step of your market entry. Tap
+                            into Nigeria's large, skilled workforce and rapidly expanding sectors - and let NIPC guide
+                            your investment journey.
+                        </p>
+                        <a href="#" class="btn-learn-more-white">
+                            CONTACT US
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" class="ms-2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-10 offset-lg-1">
+                    <!-- Top Footer Row: Logo, Description, Button -->
+                    <div class="footer-top">
+                        <div class="row align-items-center">
+                            <div class="col-lg-2 mb-3 mb-lg-0">
+                                <div class="footer-logo">
+                                    <!-- <div class="logo-placeholder">Logo Here</div> -->
+                                    <img src="/Users/user/Downloads/image 1.png" alt="Book with Chart" class="img-fluid"
+                                        style="max-width: 250px;">
+                                </div>
+                            </div>
+                            <div class="col-lg-7 mb-3 mb-lg-0">
+                                <p class="footer-description">
+                                    Nigerian Investment Promotion Commission is an agency of the Federal Government
+                                    established to encourage, promote and coordinate investments in Nigeria.
+                                </p>
+                            </div>
+                            <div class="col-lg-3 text-lg-end">
+                                <a href="#" class="btn-footer-learn">
+                                    LEARN MORE
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" class="ms-2">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer-divider"></div>
+
+                    <!-- Middle Footer Row: Newsletter & Social -->
+                    <div class="footer-middle">
+                        <div class="row">
+                            <!-- Newsletter Column -->
+                            <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+                                <h3 class="footer-title">Subscribe to our newsletter</h3>
+                                <p class="footer-subtitle">Stay updated with the latest developments in Nigeria's
+                                    business and investment landscape.</p>
+
+                                <!-- Newsletter Form -->
+                                <form class="newsletter-form" action="#" method="post">
+                                    <div class="input-group">
+                                        <input type="email" class="form-control newsletter-input"
+                                            placeholder="Your business email" required>
+                                        <button type="submit" class="btn btn-subscribe">
+                                            SUBSCRIBE
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" class="ms-2">
+                                                <polyline points="9 18 15 12 9 6"></polyline>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </form>
+
+                                <p class="privacy-text">
+                                    By subscribing, you agree to Invest Nigeria's
+                                    <a href="#" class="privacy-link">Privacy Policy</a>.
+                                </p>
+
+                                <!-- Vertical Divider - Desktop Only -->
+                                <div class="footer-vertical-divider d-none d-lg-block"></div>
+                            </div>
+
+                            <!-- Social Media Column -->
+                            <div class="col-lg-6">
+                                <h3 class="footer-title">Follow us!</h3>
+                                <p class="footer-subtitle d-none d-lg-block">Stay up to date with what's happening in
+                                    Nigeria's fast-moving business landscape.</p>
+                                <p class="footer-subtitle d-lg-none">Keep up with everything that's happening in our
+                                    fast-moving business landscape.</p>
+
+                                <!-- Social Icons -->
+                                <div class="social-icons">
+                                    <a href="#" class="social-icon" aria-label="LinkedIn">
+                                        <i class="bi bi-linkedin"></i>
+                                    </a>
+                                    <a href="#" class="social-icon" aria-label="X (Twitter)">
+                                        <i class="bi bi-twitter-x"></i>
+                                    </a>
+                                    <a href="#" class="social-icon" aria-label="Facebook">
+                                        <i class="bi bi-facebook"></i>
+                                    </a>
+                                    <a href="#" class="social-icon" aria-label="YouTube">
+                                        <i class="bi bi-youtube"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer-divider d-none d-lg-block"></div>
+                    <div class="footer-divider d-lg-none"></div>
+
+                    <!-- Bottom Footer Row: Copyright & Privacy -->
+                    <div class="footer-bottom">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-lg-6 mb-3 mb-lg-0 order-2 order-lg-1">
+                                <p class="copyright-text">© 2025 Nigerian Investment Promotion Commission.</p>
+                            </div>
+                            <div class="col-12 col-lg-6 text-lg-end order-1 order-lg-2 mb-3 mb-lg-0">
+                                <a href="#" class="privacy-notice d-none d-lg-inline">PRIVACY POLICY</a>
+                                <a href="#" class="privacy-notice d-lg-none">PRIVACY NOTICE</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
