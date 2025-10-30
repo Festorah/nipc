@@ -33,6 +33,15 @@ repos:
         types: [python]
         pass_filenames: false
 
+  - repo: local
+    hooks:
+      - id: prevent-commit-to-main
+        name: Prevent commit to main branch
+        entry: bash -c 'branch=$(git rev-parse --abbrev-ref HEAD); if [ "$branch" = "main" ] || [ "$branch" = "master" ]; then echo "🚫 Direct commits to '$branch' are not allowed! Please use a feature branch."; exit 1; fi'
+        language: system
+        types: [python, text, yaml, json]
+
+
   # - repo: local
   #   hooks:
   #     - id: run-tests
