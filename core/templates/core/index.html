@@ -2111,7 +2111,7 @@
                  handleSwipe() {
                      const swipeThreshold = 50;
                      const diff = this.touchStartX - this.touchEndX;
-                     
+
                      if (Math.abs(diff) > swipeThreshold) {
                          if (diff > 0 && this.currentInvestorIndex < this.investors.length - 1) {
                              // Swipe left - next
@@ -2320,7 +2320,7 @@
                  handleSwipe() {
                      const swipeThreshold = 50;
                      const diff = this.touchStartX - this.touchEndX;
-                     
+
                      if (Math.abs(diff) > swipeThreshold) {
                          if (diff > 0 && this.currentNewsIndex < this.newsArticles.length - 1) {
                              this.currentNewsIndex++;
