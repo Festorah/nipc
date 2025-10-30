@@ -1,24 +1,24 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v6.0.0
     hooks:
       - id: check-yaml
       - id: end-of-file-fixer
       - id: trailing-whitespace
 
   - repo: https://github.com/psf/black
-    rev: 23.12.1
+    rev: 25.9.0
     hooks:
       - id: black
 
   - repo: https://github.com/PyCQA/isort
-    rev: 5.13.2
+    rev: 7.0.0
     hooks:
       - id: isort
         args: ["--profile", "black"]
 
   - repo: https://github.com/pycqa/flake8
-    rev: 6.1.0
+    rev: 7.3.0
     hooks:
       - id: flake8
         additional_dependencies: [flake8-bugbear]
@@ -35,17 +35,41 @@ repos:
 
   - repo: local
     hooks:
+      # --- Prevent committing directly to main ---
       - id: prevent-commit-to-main
         name: Prevent commit to main branch
-        entry: bash -c 'branch=$(git rev-parse --abbrev-ref HEAD); if [ "$branch" = "main" ] || [ "$branch" = "master" ]; then echo "🚫 Direct commits to '$branch' are not allowed! Please use a feature branch."; exit 1; fi'
+        entry: >
+          bash -c '
+          branch=$(git rev-parse --abbrev-ref HEAD);
+          if [[ "$branch" == "main" || "$branch" == "master" ]]; then
+            echo "🚫 Direct commits to '"'"'$branch'"'"' are not allowed!";
+            echo "💡 Create a feature branch instead:";
+            echo "    git checkout -b feature/your-feature-name";
+            exit 1;
+          fi
+          '
         language: system
-        types: [python, text, yaml, json]
+        # types: [python, text, yaml, json]
+        stages: [pre-commit]
 
-
-  # - repo: local
-  #   hooks:
-  #     - id: run-tests
-  #       name: Run Django Tests
-  #       entry: bash -c "python manage.py test"
-  #       language: system
-  #       types: [python]
+      # --- Prevent pushing directly to main ---
+      - id: prevent-push-to-main
+        name: Prevent push to main branch
+        entry: >
+          bash -c '
+          protected_branches="main master";
+          while read local_ref local_sha remote_ref remote_sha; do
+            remote_branch=$(echo "$remote_ref" | sed "s/refs\/heads\///");
+            for branch in $protected_branches; do
+              if [[ "$remote_branch" == "$branch" ]]; then
+                echo "🚫 Pushing directly to '"'"'$branch'"'"' is not allowed!";
+                echo "💡 Push to a feature branch and create a pull request:";
+                echo "    git checkout -b feature/your-feature-name";
+                echo "    git push origin feature/your-feature-name";
+                exit 1;
+              fi
+            done
+          done
+          '
+        language: system
+        stages: [pre-push]
