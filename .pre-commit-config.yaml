@@ -49,8 +49,8 @@ repos:
           fi
           '
         language: system
-        types: [python, text, yaml, json]
-        stages: [commit]
+        # types: [python, text, yaml, json]
+        stages: [pre-commit]
 
       # --- Prevent pushing directly to main ---
       - id: prevent-push-to-main
@@ -72,4 +72,4 @@ repos:
           done
           '
         language: system
-        stages: [push]
+        stages: [pre-push]
